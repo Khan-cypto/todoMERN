@@ -1,29 +1,17 @@
-// *Server or Backend are both similar*
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv').config();
-const cors = require('cors');
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-const app = express();
-// use express.json to get data into json format
-app.use(express.json());
-// Port
-const PORT = process.env.PORT || 5000;
-
-//using cors
-app.use(cors());
-
-// importing routes
-const TodoItemRoute = require('./routes/todoItems');
-
-
-// Connect to mongodb
-mongoose.connect(process.env.DB_CONNECT)
-.then(() => console.log("Database connected"))
-.catch(err => console.log(err))
-
-app.use('/', TodoItemRoute);
-
-
-app.listen(PORT, ()=> console.log("Server is listening.."));
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
